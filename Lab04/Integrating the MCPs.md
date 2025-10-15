@@ -41,6 +41,10 @@ Add the following MCPs:
 	]
 }    
 
+Start the MCP Server
+
+Launch Copilot and you should see the MCPs available as tools - enable them and use them!
+
 ```
 ## Claude Desktop 
 Install Claude Desktop from https://claude.ai/download
