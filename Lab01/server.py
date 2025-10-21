@@ -21,7 +21,7 @@ mcp = FastMCP("Math Tools MCP")
     name="multiply",
     description="Multiply two numbers and return the product."
 )
-async def multiply(a: float, b: float) -> dict:
+def multiply(a: float, b: float) -> dict:  # <-- ✅ make this sync, not async
     """
     Args:
         a: First number
@@ -31,11 +31,13 @@ async def multiply(a: float, b: float) -> dict:
     """
     logger.info("🚀 multiply called with a=%s, b=%s", a, b)
     product = a * b
+    summary = f"{a} × {b} = {product}"
+    logger.info(summary)
     return {
         "a": a,
         "b": b,
         "product": product,
-        "summary": f"{a} × {b} = {product}"
+        "summary": summary
     }
 
 # === 5) Entrypoint ===

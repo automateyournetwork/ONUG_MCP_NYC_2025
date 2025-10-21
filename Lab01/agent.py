@@ -134,9 +134,17 @@ def main():
                 continue
 
             result = tools_call("multiply", {"a": a, "b": b})
-            # Expect: {"a": ..., "b": ..., "product": ..., "summary": "..."}
-            summary = result.get("summary") or f"{a} × {b} = {result.get('product')}"
-            print(summary)
+            
+            # Extract the actual JSON payload from the "content" field
+            if "content" in result and result["content"]:
+                try:
+                    payload = json.loads(result["content"][0]["text"])
+                    print(payload["summary"])
+                except Exception:
+                    print("⚠️ Unexpected payload format:", result)
+            else:
+                print("⚠️ No result content:", result)
+
 
     finally:
         if mcp_proc:
